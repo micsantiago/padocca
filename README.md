@@ -43,7 +43,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/padocca.git
+git clone https://github.com/DonatoReis/padocca.git
 cd padocca
 
 # Build all components
