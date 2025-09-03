@@ -1,0 +1,309 @@
+# PADOCCA - Advanced .gitignore Configuration
+# Optimized for multi-language security framework
+
+#=============================================================================
+# Build Artifacts & Binaries
+#=============================================================================
+# Compiled binaries
+bin/
+build/
+dist/
+*.exe
+*.dll
+*.so
+*.dylib
+*.app
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Go
+*.test
+*.prof
+*.bench
+vendor/
+go.sum
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+#=============================================================================
+# IDE & Editor Files
+#=============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.netrwhist
+Session.vim
+tags
+
+# Emacs
+*~
+\#*\#
+.\#*
+.emacs.desktop
+.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+#=============================================================================
+# OS Files
+#=============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+#=============================================================================
+# Security & Sensitive Files
+#=============================================================================
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Configuration with secrets
+config.yaml
+config.yml
+config.json
+secrets.yaml
+secrets.yml
+secrets.json
+*.secret
+*.private
+*.key
+*.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# Credentials
+credentials
+credentials.json
+credentials.yaml
+.credentials/
+auth.json
+auth.yaml
+
+# API Keys
+*_api_key*
+*_apikey*
+api_keys/
+apikeys/
+
+# SSH
+id_rsa
+id_rsa.pub
+id_dsa
+id_dsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+authorized_keys
+
+# AWS
+.aws/
+*.pem
+
+# Google Cloud
+gcloud/
+.gcloud/
+*.json
+
+# Azure
+.azure/
+
+#=============================================================================
+# Logs & Debug Files
+#=============================================================================
+*.log
+*.log.*
+logs/
+log/
+debug/
+*.debug
+*.trace
+*.err
+*.error
+
+#=============================================================================
+# Test Files & Reports
+#=============================================================================
+test-results/
+test-output/
+test_output/
+reports/
+*.test
+*.spec
+coverage/
+.nyc_output/
+
+#=============================================================================
+# Temporary Files
+#=============================================================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.cache
+.cache/
+
+#=============================================================================
+# Package Files
+#=============================================================================
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+*.jar
+*.war
+*.ear
+*.sar
+
+#=============================================================================
+# Database Files
+#=============================================================================
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+data/
+database/
+
+#=============================================================================
+# Documentation Build
+#=============================================================================
+docs/_build/
+docs/_static/
+docs/_templates/
+site/
+mkdocs.yml
+
+#=============================================================================
+# PADOCCA Specific
+#=============================================================================
+# OSINT Reports (may contain sensitive data)
+osint_report_*.txt
+osint_report_*.json
+padocca_report_*.json
+padocca_report_*.txt
+
+# Scan results
+scan_results/
+results/
+output/
+
+# Wordlists (too large)
+wordlists/
+*.wordlist
+*.dic
+
+# Exploit payloads
+payloads/
+exploits/
+shells/
+
+# Session files
+sessions/
+*.session
+
+# Core dumps
+core
+core.*
+*.core
+
+#=============================================================================
+# Exceptions - Files to keep
+#=============================================================================
+!.gitkeep
+!README.md
+!LICENSE
+!Makefile
+!Dockerfile
+!docker-compose.yml
+!requirements.txt
+!go.mod
+!Cargo.toml
+!package.json
