@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows-lightgrey.svg)
 ![Rust](https://img.shields.io/badge/rust-1.85-orange.svg)
-![Go](https://img.shields.io/badge/go-1.23-00ADD8.svg)
+![Go](https://img.shields.io/badge/go-1.25-00ADD8.svg)
 ![Python](https://img.shields.io/badge/python-%E2%89%A53.9-yellow.svg)
 
 **🚀 Fast • 🔒 Secure • 🎯 Intelligent • 🥷 Stealthy**
@@ -43,7 +43,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/padocca.git
+git clone https://github.com/DonatoReis/padocca.git
 cd padocca
 
 # Build all components
@@ -63,7 +63,7 @@ make build
 ```bash
 # Prerequisites
 # - Rust >= 1.70
-# - Go >= 1.21
+# - Go >= 1.23
 # - Python >= 3.9
 # - Make
 
