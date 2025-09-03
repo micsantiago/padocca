@@ -1,6 +1,6 @@
 module github.com/padocca/tools
 
-go 1.23
+go 1.25
 
 require (
 	github.com/PuerkitoBio/goquery v1.10.0

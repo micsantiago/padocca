@@ -51,7 +51,7 @@ install_go() {
         return 0
     fi
     
-    GO_VERSION="1.22.0"
+    GO_VERSION="1.25.0"
     
     if [[ "$OS" == "linux" ]]; then
         ARCH=$(uname -m)
@@ -95,6 +95,10 @@ install_rust() {
     
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     source "$HOME/.cargo/env"
+    
+    # Update to latest stable (1.85.0)
+    rustup update stable
+    rustup default stable
     
     echo -e "${GREEN}[✓] Rust installed successfully${NC}"
 }
