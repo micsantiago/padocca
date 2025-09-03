@@ -1,0 +1,82 @@
+[package]
+name = "padocca-core"
+version = "2.0.0"
+edition = "2024"
+rust-version = "1.85"
+authors = ["Padocca Team"]
+license = "MIT"
+description = "High-performance core for Padocca pentesting framework"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+# Networking
+pnet = "0.35"
+pnet_datalink = "0.35"
+# HTTP client
+reqwest = { version = "0.12", features = ["json", "stream", "rustls-tls"] }
+# CLI parsing
+clap = { version = "4.5", features = ["derive"] }
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# Async traits
+async-trait = "0.1"
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+# Randomization
+rand = "0.8"
+# Encryption
+chacha20poly1305 = "0.10"
+aes-gcm = "0.10"
+# Hashing
+blake3 = "1.5"
+sha2 = "0.10"
+# Time
+chrono = "0.4"
+# Concurrent collections
+dashmap = "6.1"
+# Async streams
+futures = "0.3"
+# Raw sockets
+socket2 = "0.5"
+# DNS
+trust-dns-resolver = "0.23"
+# Regular expressions
+regex = "1.10"
+# Terminal colors
+colored = "2.1"
+# Progress bars
+indicatif = "0.17"
+# Parallel iterator
+rayon = "1.10"
+# SSL/TLS analysis
+rustls = "0.23"
+webpki-roots = "0.26"
+x509-parser = "0.16"
+# Base64
+base64 = "0.22"
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+tokio-test = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.bench]
+inherits = "release"
+
+[[bin]]
+name = "padocca-core"
+path = "src/main.rs"
+

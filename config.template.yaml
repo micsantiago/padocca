@@ -1,0 +1,357 @@
+# PADOCCA Configuration Template
+# Copy this file to config.yaml and customize your settings
+# Environment variables can override these settings using PADOCCA_ prefix
+
+#=============================================================================
+# Global Configuration
+#=============================================================================
+global:
+  # Logging level: debug, info, warning, error, critical
+  log_level: info
+  
+  # Output formats: text, json, xml
+  output_format: text
+  
+  # Results directory
+  results_dir: ./results
+  
+  # Cache settings
+  cache:
+    enabled: true
+    ttl: 3600  # seconds
+    max_size: 100  # MB
+  
+  # Performance
+  performance:
+    max_workers: 50
+    max_memory: 2048  # MB
+    cpu_limit: 80  # percentage
+
+#=============================================================================
+# Network Configuration
+#=============================================================================
+network:
+  # Connection settings
+  connection:
+    timeout: 30  # seconds
+    retry_count: 3
+    retry_delay: 2  # seconds
+    
+  # SSL/TLS settings
+  ssl:
+    verify: true  # IMPORTANT: Set to false only for testing
+    min_version: "TLS1.2"
+    cipher_suites: []  # Empty = use defaults
+    
+  # Proxy settings
+  proxy:
+    enabled: false
+    type: "http"  # http, https, socks5
+    host: ""
+    port: 0
+    username: ""
+    password: ""
+    
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_second: 10
+    burst_size: 20
+    
+  # User agents rotation
+  user_agents:
+    rotate: true
+    custom_list: []
+    default_list:
+      - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+      - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+      - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+
+#=============================================================================
+# Scanner Configuration
+#=============================================================================
+scanner:
+  # Port scanner
+  port_scan:
+    technique: "syn"  # syn, tcp, udp, xmas, fin, null
+    ports: "1-65535"
+    threads: 1000
+    timeout: 1000  # milliseconds
+    
+  # Web crawler
+  web_crawler:
+    max_depth: 5
+    max_pages: 1000
+    follow_redirects: true
+    parse_javascript: true
+    respect_robots: false
+    
+  # DNS enumeration
+  dns_enum:
+    recursive: true
+    zone_transfer: true
+    bruteforce: true
+    resolvers:
+      - "8.8.8.8"
+      - "8.8.4.4"
+      - "1.1.1.1"
+
+#=============================================================================
+# Bruteforce Configuration
+#=============================================================================
+bruteforce:
+  # General settings
+  general:
+    stop_on_success: true
+    randomize_order: true
+    smart_mode: true
+    
+  # Timing
+  timing:
+    delay_min: 0  # milliseconds
+    delay_max: 1000  # milliseconds
+    adaptive: true
+    
+  # Stealth mode
+  stealth:
+    enabled: true
+    level: 5  # 1-5, higher = more stealth
+    techniques:
+      - "user_agent_rotation"
+      - "request_timing_variation"
+      - "session_management"
+      - "cookie_handling"
+      - "header_spoofing"
+      
+  # Intelligent mode
+  intelligent:
+    enabled: true
+    fingerprint_first: true
+    detect_waf: true
+    check_default_creds: true
+    generate_variants: true
+    
+  # WAF bypass
+  waf_bypass:
+    enabled: true
+    techniques:
+      - "encoding"
+      - "case_variation"
+      - "comment_injection"
+      - "parameter_pollution"
+      - "time_delay"
+      
+  # Protocol specific
+  protocols:
+    ssh:
+      port: 22
+      timeout: 10
+      auth_methods: ["password", "publickey"]
+      
+    http:
+      follow_redirects: false
+      max_redirects: 5
+      custom_headers: {}
+      
+    mysql:
+      port: 3306
+      timeout: 10
+      
+    postgresql:
+      port: 5432
+      timeout: 10
+      
+    ftp:
+      port: 21
+      passive: true
+      
+    rdp:
+      port: 3389
+      security: "tls"
+
+#=============================================================================
+# Exploit Framework Configuration
+#=============================================================================
+exploit:
+  # Payload generation
+  payload:
+    encoder: "xor"  # xor, base64, unicode, custom
+    bad_chars: ["\\x00", "\\x0a", "\\x0d"]
+    max_size: 0  # 0 = unlimited
+    
+  # Shellcode options
+  shellcode:
+    type: "reverse_shell"  # reverse_shell, bind_shell, meterpreter
+    lhost: "0.0.0.0"
+    lport: 4444
+    
+  # Evasion
+  evasion:
+    antivirus_bypass: true
+    sandbox_detection: true
+    debugger_detection: true
+    
+  # ROP chains
+  rop:
+    auto_generate: true
+    gadget_database: "./gadgets.db"
+
+#=============================================================================
+# OSINT Configuration
+#=============================================================================
+osint:
+  # Data sources
+  sources:
+    shodan:
+      enabled: false
+      api_key: ""  # Set via PADOCCA_OSINT_SHODAN_API_KEY env var
+      
+    censys:
+      enabled: false
+      api_id: ""
+      api_secret: ""
+      
+    virustotal:
+      enabled: false
+      api_key: ""
+      
+    hunter:
+      enabled: false
+      api_key: ""
+      
+  # Search settings
+  search:
+    max_results: 100
+    include_subdomains: true
+    check_wayback: true
+    
+  # Data enrichment
+  enrichment:
+    whois: true
+    dns_records: true
+    ssl_certificates: true
+    technology_stack: true
+    social_media: true
+    employee_search: false  # GDPR compliance
+
+#=============================================================================
+# Reporting Configuration
+#=============================================================================
+reporting:
+  # Report formats
+  formats:
+    - "json"
+    - "html"
+    - "pdf"
+    - "xml"
+    
+  # Report content
+  content:
+    executive_summary: true
+    technical_details: true
+    vulnerability_details: true
+    recommendations: true
+    compliance_mapping: true
+    
+  # Templates
+  templates:
+    html: "./templates/report.html"
+    pdf: "./templates/report.tex"
+    
+  # Notifications
+  notifications:
+    email:
+      enabled: false
+      smtp_server: ""
+      smtp_port: 587
+      use_tls: true
+      username: ""
+      password: ""
+      from: ""
+      to: []
+      
+    slack:
+      enabled: false
+      webhook_url: ""
+      
+    discord:
+      enabled: false
+      webhook_url: ""
+
+#=============================================================================
+# Security Configuration
+#=============================================================================
+security:
+  # Authentication
+  authentication:
+    required: false
+    method: "token"  # token, basic, oauth2
+    
+  # Encryption
+  encryption:
+    algorithm: "chacha20poly1305"  # chacha20poly1305, aes-256-gcm
+    key_derivation: "argon2id"
+    
+  # Audit logging
+  audit:
+    enabled: true
+    log_file: "./audit.log"
+    log_format: "json"
+    
+  # Compliance
+  compliance:
+    gdpr_mode: false
+    log_retention_days: 90
+    
+  # Anti-forensics
+  anti_forensics:
+    clear_logs: false
+    secure_delete: true
+    memory_wipe: true
+
+#=============================================================================
+# Development Configuration
+#=============================================================================
+development:
+  debug:
+    enabled: false
+    verbose: false
+    save_requests: false
+    save_responses: false
+    
+  testing:
+    mock_mode: false
+    test_targets: []
+    
+  profiling:
+    enabled: false
+    cpu_profile: false
+    memory_profile: false
+    trace: false
+
+#=============================================================================
+# Profiles (Quick Settings)
+#=============================================================================
+profiles:
+  # Stealth profile - Maximum evasion
+  stealth:
+    network.rate_limit.requests_per_second: 2
+    bruteforce.stealth.level: 5
+    bruteforce.timing.delay_min: 5000
+    bruteforce.timing.delay_max: 15000
+    scanner.port_scan.threads: 10
+    
+  # Aggressive profile - Maximum speed
+  aggressive:
+    network.rate_limit.enabled: false
+    bruteforce.stealth.enabled: false
+    bruteforce.timing.delay_min: 0
+    bruteforce.timing.delay_max: 0
+    scanner.port_scan.threads: 5000
+    
+  # Compliance profile - GDPR/Legal compliance
+  compliance:
+    osint.enrichment.employee_search: false
+    security.compliance.gdpr_mode: true
+    security.audit.enabled: true
+    reporting.content.compliance_mapping: true
