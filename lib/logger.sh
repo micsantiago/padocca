@@ -40,7 +40,7 @@ init_logger() {
     
     # Write log header
     echo "=====================================" >> "$LOG_FILE"
-    echo "PADOCCA Security Framework v2.0" >> "$LOG_FILE"
+    echo "PADOCCA Security Framework v1.4a" >> "$LOG_FILE"
     echo "Scan Started: $(date '+%Y-%m-%d %H:%M:%S')" >> "$LOG_FILE"
     echo "Target: $scan_name" >> "$LOG_FILE"
     echo "=====================================" >> "$LOG_FILE"

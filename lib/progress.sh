@@ -160,7 +160,7 @@ show_dashboard() {
     
     clear
     echo -e "${CYAN}╭──────────────────────────────────────────────────────────╮${NC}"
-    echo -e "${CYAN}│${NC}   ${BOLD}🥖 PADOCCA SECURITY FRAMEWORK v4.1${NC}                  ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC}   ${BOLD}🥖 PADOCCA SECURITY FRAMEWORK v1.4a${NC}                 ${CYAN}│${NC}"
     echo -e "${CYAN}│${NC}   ${YELLOW}Target:${NC} ${GREEN}$target${NC}"
     printf "${CYAN}│${NC}   ${YELLOW}Mode:${NC} %-47s ${CYAN}│${NC}\n" "$mode"
     echo -e "${CYAN}│${NC}   ${YELLOW}Time:${NC} $(date '+%Y-%m-%d %H:%M:%S')                          ${CYAN}│${NC}"

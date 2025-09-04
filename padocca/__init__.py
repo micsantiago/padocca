@@ -12,7 +12,7 @@ __url__ = "https://github.com/DonatoReis/padocca"
 # ASCII Banner
 BANNER = """
 ╔════════════════════════════════════════════════════╗
-║       🥖 PADOCCA SECURITY FRAMEWORK v2.0 🥖       ║
+║       🥖 PADOCCA SECURITY FRAMEWORK v1.4a 🥖       ║
 ║         Elite • Stealth • Undetectable            ║
 ╚════════════════════════════════════════════════════╝
 """

@@ -1,187 +1,236 @@
-# 🥖 PADOCCA v2.0 - Elite Pentesting Framework
+# 🥖 PADOCCA Security Framework v1.4a
 
-<div align="center">
+![Version](https://img.shields.io/badge/version-2.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-active-success)
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows-lightgrey.svg)
-![Rust](https://img.shields.io/badge/rust-1.85-orange.svg)
-![Go](https://img.shields.io/badge/go-1.25-00ADD8.svg)
-![Python](https://img.shields.io/badge/python-%E2%89%A53.9-yellow.svg)
+## Elite • Stealth • Undetectable
 
-**🚀 Fast • 🔒 Secure • 🎯 Intelligent • 🥷 Stealthy**
+PADOCCA é uma framework de segurança ofensiva de última geração que combina reconhecimento avançado, detecção de vulnerabilidades e modo stealth adaptativo para testes de penetração profissionais.
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Architecture](#-architecture) • [Documentation](#-documentation)
+## 🚀 O que há de novo na v1.4a
 
-</div>
+### ✨ Novos Módulos Principais
+- **🔍 Subdomain Discovery Avançado**: 20+ fontes de dados com validação inteligente
+- **🕰️ Wayback Machine Integration**: Descoberta de URLs históricas com validação
+- **📝 Template-based Scanning**: Sistema estilo Nuclei para detecção de vulnerabilidades
+- **🔄 Pipeline Orchestration**: Execução declarativa de ataques via YAML
+- **🥷 Stealth Mode v1.4a**: Sistema completo de evasão com 5 níveis adaptáveis
+- **🛡️ WAF Detection & Bypass**: Detecção e bypass automático de WAF/IPS
+- **💾 Cache Inteligente**: Sistema de cache com TTL configurável
 
-## ⚡ Features
-
-- 🚀 **Blazing Fast**: Written in Rust and Go for maximum performance
-- 🥷 **Stealth Mode**: Advanced evasion techniques to bypass IDS/IPS
-- 🔌 **Modular**: Plugin system for easy extensions
-- 🔒 **Secure**: Military-grade encryption and secure communications
-- 📊 **Comprehensive**: 15+ integrated security tools
-- 🌍 **Cross-Platform**: Works on Linux, macOS, and Windows
-
-## 🛠️ Core Tools
-
-| Tool | Description | Language |
-|------|-------------|----------|
-| **Port Scanner** | Ultra-fast TCP/UDP/ICMP scanning | Rust |
-| **Web Crawler** | Intelligent web spider with JS rendering | Go |
-| **Network Discovery** | ARP/ICMP/IPv6 network mapping | Rust |
-| **Brute Force** | Multi-protocol credential attacks | Go |
-| **DNS Enum** | Subdomain discovery and zone transfer | Go |
-| **SSL Analyzer** | TLS/SSL vulnerability assessment | Rust |
-| **Directory Fuzzer** | Smart directory and file discovery | Go |
-| **Exploit Framework** | Payload generation and encoding | Rust |
-| **Proxy Chain** | Traffic routing through multiple proxies | Go |
-| **Packet Crafter** | Custom packet generation | Rust |
-
-## 🚀 Quick Start
+## 📦 Instalação Rápida
 
 ```bash
-# Clone the repository
-git clone https://github.com/DonatoReis/padocca.git
+git clone https://github.com/seu-usuario/padocca.git
 cd padocca
-
-# Build all components
-make build
-
-# Run a basic port scan
-./padocca scan -t 192.168.1.1
-
-# Run full audit
-./padocca master -t example.com --stealth
-```
-
-## 📦 Installation
-
-### 🚀 Quick Install (Recommended)
-
-```bash
-# Clone the repository
-git clone https://github.com/DonatoReis/padocca.git
-cd padocca
-
-# Run the installer (automatically installs dependencies)
 ./install.sh
-
-# Configure the tool (optional)
-./configure.sh
-
-# Verify installation
-./padocca.sh --help
 ```
 
-### From Source
+## 🎯 Uso Básico
 
+### Scan Completo (14 módulos)
 ```bash
-# Prerequisites
-# - Rust >= 1.85
-# - Go >= 1.25
-# - Python >= 3.9
-# - Make
+# Scan básico
+./padocca.sh --scan example.com
 
-# Build
-make all
+# Scan em modo stealth
+./padocca.sh --scan example.com --stealth
 
-# Install
-sudo make install
+# Scan + pipeline de ataque completo
+./padocca.sh --scan example.com --full
+
+# Ultimate stealth attack
+./padocca.sh --scan example.com --stealth --full
 ```
 
-### Using Docker
+## 🛠️ Módulos Disponíveis
 
+### Core (Básicos)
+- `--scan` - Scan completo com 14 módulos
+- `--dns` - Enumeração DNS
+- `--ports` - Scan de portas
+- `--crawl` - Web crawler
+- `--fuzzer` - Directory fuzzing
+- `--ssl` - Análise SSL/TLS
+- `--email` - Análise de segurança de email
+
+### Avançados
+- `--xss-sqli` - Scanner XSS/SQLi com bypass WAF
+- `--osint` - Inteligência OSINT profunda
+- `--bruteforce` - Bruteforce inteligente
+- `--subdiscover` - Descoberta de subdomínios (20+ fontes)
+- `--wayback` - URLs históricas
+- `--template-scan` - Scan baseado em templates
+- `--pipeline` - Execução de pipeline YAML
+
+### Stealth Mode
+- `--stealth scan` - Scan ultra-silencioso
+- `--stealth config` - Ver configuração
+- `--stealth proxy` - Gerenciar proxies
+- `--stealth test` - Testar capacidades
+
+## 🥷 Stealth Mode - Níveis
+
+| Nível | Nome | Descrição |
+|-------|------|-----------|
+| 0 | Disabled | Sem stealth |
+| 1 | Low | Randomização básica |
+| 2 | Medium | Proxies + timing |
+| 3 | High | Fragmentação + adaptativo |
+| 4 | Paranoid | Todas técnicas + decoys |
+
+### Técnicas de Evasão Implementadas
+- ✅ Randomização de User-Agent (50+ agents)
+- ✅ Headers dinâmicos rotativos
+- ✅ Timing adaptativo gaussiano
+- ✅ Suporte a proxies residenciais
+- ✅ Fragmentação de pacotes
+- ✅ Tráfego decoy para camuflagem
+- ✅ Encoding multi-camada
+- ✅ Session management
+- ✅ Anti-forensics automático
+
+## 📋 Pipelines Declarativas
+
+### Exemplo de Pipeline YAML
+```yaml
+name: "Web Pentest Complete"
+stages:
+  - name: reconnaissance
+    steps:
+      - module: subdiscovery
+        config:
+          target: "{{.target}}"
+          sources: ["all"]
+      
+  - name: scanning
+    parallel: true
+    steps:
+      - module: portscan
+      - module: wayback
+      
+  - name: exploitation
+    manual_approval: true
+    steps:
+      - module: template_scan
+        config:
+          templates: ["critical", "high"]
+```
+
+### Executar Pipeline
 ```bash
-docker pull padocca/padocca:latest
-docker run -it padocca/padocca scan -t <target>
+# Pipeline padrão
+./padocca.sh --pipeline pipelines/pentest-web.yaml -t example.com
+
+# Pipeline stealth
+./padocca.sh --pipeline pipelines/stealth-web-pentest.yaml -t example.com
 ```
 
-## 📖 Usage
+## 🎯 O que o Full Scan faz?
 
-### Basic Scanning
+O comando `--scan` agora executa **14 módulos** organizados em 4 fases:
 
-```bash
-# TCP SYN scan
-padocca scan -t 192.168.1.1 -p 1-1000 --syn
+### FASE 1: Reconhecimento Passivo
+1. **Subdomain Discovery** - 20+ fontes de dados
+2. **Wayback URLs** - URLs históricas
+3. **DNS Enumeration** - Zone transfer, registros
+4. **OSINT Intelligence** - Coleta de inteligência
 
-# UDP scan
-padocca scan -t 192.168.1.1 -p 53,161,500 --udp
+### FASE 2: Reconhecimento Ativo
+5. **WAF Detection** - Detecta e prepara bypass
+6. **Port Scanning** - Scan adaptativo
+7. **Web Crawling** - Spider profundo
+8. **SSL Analysis** - Análise TLS/SSL
 
-# Network discovery
-padocca discover -n 192.168.1.0/24 --arp
+### FASE 3: Avaliação de Vulnerabilidades
+9. **Template Scanning** - Detecção via templates
+10. **XSS/SQLi Scanner** - Com bypass WAF
+11. **Directory Fuzzing** - Descoberta de diretórios
+
+### FASE 4: Análise Avançada
+12. **Email Security** - SPF/DMARC/DKIM
+13. **Tech Fingerprinting** - Stack tecnológico
+14. **API Discovery** - Endpoints de API
+
+## 📊 Estatísticas e Performance
+
+| Módulo | Performance | Concorrência |
+|--------|------------|--------------|
+| Subdomain Discovery | ~1000/min | 20 workers |
+| Wayback URLs | ~1000/sec | 10 workers |
+| Port Scanning | 65K ports/30s | 100 workers |
+| Template Scan | 100 templates/min | 20 workers |
+
+## 🔧 Configuração
+
+### Proxies (config/proxies.txt)
+```
+socks5://127.0.0.1:9050  # Tor
+http://proxy.com:8080
+https://user:pass@proxy2.com:3128
 ```
 
-### Web Analysis
+### Templates (templates/)
+- SQL Injection templates
+- XSS templates  
+- XXE templates
+- RCE templates
+- Custom YAML templates
 
-```bash
-# Web crawling
-padocca crawl -u https://example.com -d 3
-
-# Directory fuzzing
-padocca fuzz -u https://example.com -w wordlist.txt
-
-# SSL/TLS analysis
-padocca ssl -t example.com:443
-```
-
-### Advanced Features
-
-```bash
-# Stealth mode with Tor
-padocca --stealth --tor scan -t <target>
-
-# Aggressive mode
-padocca --aggressive master -t <target>
-
-# Custom exploit
-padocca exploit --generate reverse_shell --os linux --encode xor
-```
-
-## 🏗️ Architecture
+## 🏗️ Arquitetura
 
 ```
 Padocca/
-├── core-rust/      # High-performance core (70%)
-├── tools-go/       # Network tools (25%)
-├── interface-python/# CLI and reporting (5%)
-└── shared/         # Common resources
+├── bin/                # Binários compilados
+├── pipelines/         # Pipelines YAML
+├── templates/         # Templates de vulnerabilidades
+├── config/            # Configurações
+├── results/           # Resultados dos scans
+├── tools-go/          # Módulos em Go (70%)
+├── core-rust/         # Core em Rust (25%)
+└── docs/              # Documentação
 ```
 
-## 🔒 Security
+## 🔒 Segurança
 
-- All communications encrypted with ChaCha20-Poly1305
-- Certificate pinning for secure connections
-- Anti-debugging and anti-forensics features
-- Automatic log cleanup
+- **False Positive Reduction**: Validação comportamental
+- **WAF Evasion**: Bypass automático
+- **Stealth Operations**: 5 níveis de discrição
+- **Cache Intelligence**: Evita re-scans desnecessários
+- **Adaptive Timing**: Ajusta baseado em respostas
 
-## 📊 Performance
+## 📈 Roadmap
 
-| Operation | Speed | Comparison |
-|-----------|-------|------------|
-| Port Scan (65K ports) | 30 sec | 60x faster than Nmap |
-| Web Crawl (1K pages) | 1 min | 15x faster than traditional |
-| Network Discovery | 0.3 sec/host | 30x faster |
+- [ ] Execução distribuída (cluster mode)
+- [ ] Plugin marketplace
+- [ ] GUI web interface
+- [ ] Integration with Metasploit
+- [ ] AI-powered exploitation
+- [ ] Zero-day discovery engine
 
-## 🤝 Contributing
+## 🤝 Contribuindo
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Contribuições são bem-vindas! Por favor:
+1. Fork o projeto
+2. Crie sua feature branch
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
 
-## 📄 License
+## ⚠️ Aviso Legal
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+Esta ferramenta é destinada apenas para testes autorizados de segurança. O uso não autorizado é ilegal e antiético.
 
-## ⚠️ Disclaimer
+## 📜 Licença
 
-This tool is for authorized security testing only. Users are responsible for complying with applicable laws.
+MIT License - veja LICENSE para detalhes
 
-## 🙏 Credits
+## 🙏 Créditos
 
-Created with ❤️ by the security community
+Desenvolvido com ❤️ pela PADOCCA Security Team
 
 ---
 
-<div align="center">
-<b>Padocca</b> - Because security testing should be fast, powerful, and delicious 🥖
-</div>
+**Para suporte**: security@padocca.com  
+**Documentação completa**: [docs/FEATURES.md](docs/FEATURES.md)

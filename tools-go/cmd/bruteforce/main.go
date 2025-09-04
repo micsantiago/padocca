@@ -779,7 +779,7 @@ func getDefaultPasswords() []string {
 func printBanner() {
 	color.Cyan(`
 ╔═══════════════════════════════════════════════════════╗
-║        PADOCCA UNIFIED BRUTEFORCE v2.0               ║
+║        PADOCCA UNIFIED BRUTEFORCE v1.4a               ║
 ║        Intelligent • Stealth • Unstoppable           ║
 ╚═══════════════════════════════════════════════════════╝
 `)

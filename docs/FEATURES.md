@@ -1,4 +1,4 @@
-# 🥖 PADOCCA v2.0 - Complete Feature Documentation
+# 🥖 PADOCCA v1.4a - Complete Feature Documentation
 
 ## ✅ Implemented Features
 
@@ -46,7 +46,7 @@
 - **Confidence scoring** for detection
 - **Stealth mode** with delays and randomization
 
-### 🥷 Advanced Stealth Mode v2.0
+### 🥷 Advanced Stealth Mode v1.4a
 
 #### Sistema Completo de Stealth
 - **5 Níveis de Stealth**: 
@@ -265,7 +265,7 @@ The system includes:
 
 ## 🎉 Summary
 
-PADOCCA v2.0 now provides:
+PADOCCA v1.4a now provides:
 - ✅ **Complete attack automation** via pipelines
 - ✅ **Intelligent vulnerability detection** with low false positives
 - ✅ **Advanced reconnaissance** with 20+ sources
