@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="https://i.ibb.co/0jCTqKkj/upscalemedia-transformed.png" alt="Minha imagem" width="600"/>
-</p>
+<div align="center" style="background-color:black; padding: 20px 0;">
+  <img src="https://i.ibb.co/0jCTqKkj/upscalemedia-transformed.png" alt="PADOCCA Security Framework v2.0" width="600"/>
+</div>
 
 # PADOCCA Security Framework v2.0
 
