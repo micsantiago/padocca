@@ -12,7 +12,7 @@
 
 ## Overview
 
-PADOCCA v1.4a is a modular, high-performance penetration testing framework designed for professional security assessments. The framework provides a unified API across multiple languages (Rust, Go, Python) with shared configuration and components.
+PADOCCA v2.0 is a modular, high-performance penetration testing framework designed for professional security assessments. The framework provides a unified API across multiple languages (Rust, Go, Python) with shared configuration and components.
 
 ### Architecture
 
@@ -507,5 +507,5 @@ For issues, questions, or contributions:
 
 ---
 
-*PADOCCA v1.4a - Elite Pentesting Framework*
+*PADOCCA v2.0 - Elite Pentesting Framework*
 *Copyright © 2024 PADOCCA Team*

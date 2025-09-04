@@ -12,7 +12,7 @@ NC='\033[0m'
 BOLD='\033[1m'
 
 echo -e "${CYAN}╔══════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║   PADOCCA CONFIGURATION WIZARD v1.4a     ║${NC}"
+echo -e "${CYAN}║   PADOCCA CONFIGURATION WIZARD v2.0     ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -111,7 +111,7 @@ setup_config() {
     if [ ! -f "config/padocca.yaml" ]; then
         cat > config/padocca.yaml << 'EOF'
 # PADOCCA Default Configuration
-version: 1.4a
+version: 2.0
 
 # Default settings
 defaults:
@@ -212,7 +212,7 @@ compile_go_modules() {
 
 # Setup the new version
 setup_new_version() {
-    echo -e "\n${YELLOW}[*] Setting up PADOCCA v1.4a...${NC}"
+    echo -e "\n${YELLOW}[*] Setting up PADOCCA v2.0...${NC}"
     
     # Backup old version if exists
     if [ -f "padocca.sh" ] && [ ! -L "padocca.sh" ]; then

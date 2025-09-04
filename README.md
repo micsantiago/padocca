@@ -1,4 +1,4 @@
-# 🥖 PADOCCA Security Framework v1.4a
+# 🥖 PADOCCA Security Framework v2.0
 
 ![Version](https://img.shields.io/badge/version-1.4a-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -8,14 +8,14 @@
 
 PADOCCA é uma framework de segurança ofensiva de última geração que combina reconhecimento avançado, detecção de vulnerabilidades e modo stealth adaptativo para testes de penetração profissionais.
 
-## 🚀 O que há de novo na v1.4a
+## 🚀 O que há de novo na v2.0
 
 ### ✨ Novos Módulos Principais
 - **🔍 Subdomain Discovery Avançado**: 20+ fontes de dados com validação inteligente
 - **🕰️ Wayback Machine Integration**: Descoberta de URLs históricas com validação
 - **📝 Template-based Scanning**: Sistema estilo Nuclei para detecção de vulnerabilidades
 - **🔄 Pipeline Orchestration**: Execução declarativa de ataques via YAML
-- **🥷 Stealth Mode v1.4a**: Sistema completo de evasão com 5 níveis adaptáveis
+- **🥷 Stealth Mode v2.0**: Sistema completo de evasão com 5 níveis adaptáveis
 - **🛡️ WAF Detection & Bypass**: Detecção e bypass automático de WAF/IPS
 - **💾 Cache Inteligente**: Sistema de cache com TTL configurável
 

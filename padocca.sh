@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# PADOCCA v1.4a - Advanced Penetration Testing Framework
+# PADOCCA v2.0 - Advanced Penetration Testing Framework
 # FINAL PRODUCTION VERSION - All improvements integrated
 # Date: 2025-09-04
 
@@ -59,7 +59,7 @@ BOLD='\033[1m'
 DIM='\033[2m'
 
 # Version
-VERSION="1.4a"
+VERSION="2.0"
 BUILD_DATE="2025-09-04"
 
 # Paths

@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 print_banner() {
     echo -e "${CYAN}"
     echo "╔═══════════════════════════════════════════════════════╗"
-    echo "║      🥖 PADOCCA INSTALLER v1.4a 🥖                    ║"
+    echo "║      🥖 PADOCCA INSTALLER v2.0 🥖                    ║"
     echo "║        Elite Pentesting Framework                     ║"
     echo "╚═══════════════════════════════════════════════════════╝"
     echo -e "${NC}"
