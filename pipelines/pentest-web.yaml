@@ -1,0 +1,145 @@
+# PADOCCA Pipeline Configuration
+# Declarative attack pipeline definition
+
+name: "Complete Web Pentest"
+description: "Comprehensive web application penetration testing pipeline"
+author: "PADOCCA Team"
+version: "1.0"
+
+# Global settings
+settings:
+  cache:
+    enabled: true
+    ttl: 3600  # 1 hour
+  
+  stealth:
+    enabled: true
+    delay_min: 1000  # milliseconds
+    delay_max: 5000
+    randomize_user_agents: true
+  
+  parallel:
+    max_workers: 20
+    rate_limit: 10  # requests per second
+  
+  output:
+    format: "json"
+    directory: "./results"
+    
+# Pipeline stages
+stages:
+  # Stage 1: Reconnaissance
+  - name: "reconnaissance"
+    description: "Initial target reconnaissance"
+    parallel: false  # Run sequentially
+    steps:
+      - module: "subdiscovery"
+        config:
+          sources: ["crtsh", "virustotal", "wayback", "bruteforce"]
+          validate: true
+          ports: false
+          output: "{{output.directory}}/subdomains.json"
+          
+      - module: "wayback"
+        config:
+          targets: "{{reconnaissance.subdiscovery.results}}"
+          validate: true
+          max: 1000
+          output: "{{output.directory}}/urls.json"
+
+  # Stage 2: Scanning
+  - name: "scanning"
+    description: "Port and service scanning"
+    parallel: true
+    depends_on: ["reconnaissance"]
+    steps:
+      - module: "portscan"
+        config:
+          targets: "{{reconnaissance.subdiscovery.active_subdomains}}"
+          ports: "top-1000"
+          techniques: ["syn", "connect"]
+          service_detection: true
+          
+      - module: "technology_fingerprint"
+        config:
+          targets: "{{reconnaissance.subdiscovery.active_subdomains}}"
+          deep_scan: true
+
+  # Stage 3: Vulnerability Detection
+  - name: "vulnerability_detection"
+    description: "Automated vulnerability scanning"
+    parallel: true
+    depends_on: ["scanning"]
+    steps:
+      - module: "template_scan"
+        config:
+          targets: "{{reconnaissance.subdiscovery.active_subdomains}}"
+          templates: "./templates/**/*.yaml"
+          tags: ["cve", "owasp-top10", "misconfig"]
+          severity: ["critical", "high", "medium"]
+          
+      - module: "waf_detection"
+        config:
+          targets: "{{reconnaissance.subdiscovery.active_subdomains}}"
+          bypass_techniques: true
+
+  # Stage 4: Exploitation
+  - name: "exploitation"
+    description: "Controlled exploitation attempts"
+    parallel: false
+    depends_on: ["vulnerability_detection"]
+    manual_approval: true  # Require manual approval before running
+    steps:
+      - module: "bruteforce"
+        config:
+          targets: "{{vulnerability_detection.template_scan.auth_endpoints}}"
+          intelligent_mode: true
+          stealth: true
+          waf_bypass: true
+          
+      - module: "exploit_validation"
+        config:
+          vulnerabilities: "{{vulnerability_detection.template_scan.exploitable}}"
+          safe_mode: true
+
+  # Stage 5: Reporting
+  - name: "reporting"
+    description: "Generate final report"
+    depends_on: ["exploitation"]
+    steps:
+      - module: "report_generator"
+        config:
+          format: ["html", "pdf", "json"]
+          include_evidence: true
+          executive_summary: true
+          output: "{{output.directory}}/report"
+
+# Conditional execution
+conditions:
+  - if: "{{scanning.portscan.open_ports contains 443}}"
+    then:
+      - module: "ssl_analysis"
+        config:
+          deep_scan: true
+          
+  - if: "{{vulnerability_detection.waf_detection.detected}}"
+    then:
+      - module: "waf_bypass"
+        config:
+          aggressive: false
+          techniques: ["encoding", "obfuscation", "fragmentation"]
+
+# Error handling
+on_error:
+  - action: "log"
+    level: "error"
+  - action: "notify"
+    channels: ["slack", "email"]
+  - action: "continue"  # or "stop"
+
+# Success actions
+on_success:
+  - action: "archive_results"
+  - action: "clean_temp_files"
+  - action: "notify"
+    message: "Pipeline completed successfully"
