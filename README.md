@@ -1,6 +1,10 @@
-# 🥖 PADOCCA Security Framework v2.0
+<p align="center">
+  <img src="https://i.ibb.co/0jCTqKkj/upscalemedia-transformed.png" alt="Minha imagem" width="600"/>
+</p>
 
-![Version](https://img.shields.io/badge/version-1.4a-blue)
+# PADOCCA Security Framework v2.0
+
+![Version](https://img.shields.io/badge/version-2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-success)
 
