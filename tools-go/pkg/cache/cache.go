@@ -340,6 +340,10 @@ func (cm *CacheManager) evictOldest() {
 }
 
 func (cm *CacheManager) cleanupRoutine(interval time.Duration) {
+	// Ensure interval is positive
+	if interval <= 0 {
+		interval = 5 * time.Minute // Default to 5 minutes
+	}
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 	

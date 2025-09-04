@@ -46,12 +46,54 @@
 - **Confidence scoring** for detection
 - **Stealth mode** with delays and randomization
 
-### 🥷 Advanced Stealth Features
-- **Random User-Agent** rotation
-- **Timing randomization** between requests
-- **Proxy support** for anonymization
-- **Rate limiting** to avoid detection
-- **Adaptive aggressiveness** based on target response
+### 🥷 Advanced Stealth Mode v2.0
+
+#### Sistema Completo de Stealth
+- **5 Níveis de Stealth**: 
+  - Level 0: Disabled
+  - Level 1: Low (basic randomization)
+  - Level 2: Medium (proxies + timing)
+  - Level 3: High (fragmentation + adaptive)
+  - Level 4: Paranoid (all techniques + decoys)
+
+#### Técnicas de Evasão
+- **Randomização de User-Agent**: Pool de 50+ user agents reais
+- **Headers Dinâmicos**: Rotação de combinações de headers
+- **Timing Adaptativo**: Delays gaussianos para parecer humano
+- **Referrer Spoofing**: Simula origem de buscadores
+- **Encoding Multi-camada**: Unicode, URL duplo, HTML entity
+- **Session Management**: Mantém cookies e estado entre requests
+
+#### Gerenciamento de Proxies
+- **Suporte a proxies residenciais e rotativos**
+- **Healthcheck automático de proxies**
+- **Rotação inteligente baseada em falhas**
+- **Suporte a SOCKS5/HTTP/HTTPS**
+- **Integração com Tor**
+
+#### Técnicas Avançadas
+- **Fragmentação de Pacotes**: Evasão IDS/IPS em nível de rede
+- **Tráfego Decoy**: Gera requisições legítimas para camuflar ataques
+- **Tunelamento**: Suporte a SSH/VPN para tráfego encriptado
+- **Perfil Adaptativo**: Ajusta agressividade baseado em respostas
+- **Anti-Forensics**: Limpeza de traces e logs
+
+#### Comandos Stealth
+```bash
+# Executar scan ultra-stealth
+./padocca.sh --stealth scan example.com
+
+# Ver configuração de stealth
+./padocca.sh --stealth config
+
+# Gerenciar proxies
+./padocca.sh --stealth proxy list
+./padocca.sh --stealth proxy add socks5://127.0.0.1:9050
+./padocca.sh --stealth proxy test http://proxy.com:8080
+
+# Testar capacidades stealth
+./padocca.sh --stealth test example.com
+```
 
 ### 🔌 Modular Architecture
 - **Rust core** for high-performance scanning (70%)

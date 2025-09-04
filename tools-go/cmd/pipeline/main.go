@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -14,6 +15,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/padocca/tools/pkg/cache"
+	"github.com/padocca/tools/pkg/stealth"
 	"github.com/spf13/cobra"
 	"golang.org/x/sync/semaphore"
 	"gopkg.in/yaml.v3"
@@ -32,11 +34,12 @@ type Pipeline struct {
 	OnSuccess   []Action               `yaml:"on_success"`
 	
 	// Runtime
-	results     map[string]interface{}
-	cache       *cache.CacheManager
-	mutex       sync.RWMutex
-	startTime   time.Time
-	endTime     time.Time
+	results       map[string]interface{}
+	cache         *cache.CacheManager
+	stealthMgr    *stealth.StealthManager
+	mutex         sync.RWMutex
+	startTime     time.Time
+	endTime       time.Time
 }
 
 // PipelineSettings contains global settings
@@ -84,10 +87,17 @@ type CacheSettings struct {
 }
 
 type StealthSettings struct {
-	Enabled             bool `yaml:"enabled"`
-	DelayMin            int  `yaml:"delay_min"`
-	DelayMax            int  `yaml:"delay_max"`
-	RandomizeUserAgents bool `yaml:"randomize_user_agents"`
+	Enabled             bool   `yaml:"enabled"`
+	Level               int    `yaml:"level"` // 0-4 (off to paranoid)
+	DelayMin            int    `yaml:"delay_min"`
+	DelayMax            int    `yaml:"delay_max"`
+	RandomizeUserAgents bool   `yaml:"randomize_user_agents"`
+	UseProxies          bool   `yaml:"use_proxies"`
+	ProxyRotation       bool   `yaml:"proxy_rotation"`
+	FragmentPackets     bool   `yaml:"fragment_packets"`
+	AdaptiveProfile     bool   `yaml:"adaptive_profile"`
+	UseDecoys           bool   `yaml:"use_decoys"`
+	ProxyList           string `yaml:"proxy_list"` // Path to proxy list file
 }
 
 type ParallelSettings struct {
@@ -167,6 +177,29 @@ func runPipeline(cmd *cobra.Command, args []string) {
 		}
 		pipeline.cache = cache.NewCacheManager(cacheConfig)
 		defer pipeline.cache.Close()
+	}
+
+	// Initialize stealth manager if enabled
+	if pipeline.Settings.Stealth.Enabled {
+		stealthConfig := &stealth.StealthConfig{
+			Enabled:          true,
+			Level:            pipeline.Settings.Stealth.Level,
+			MinDelay:         pipeline.Settings.Stealth.DelayMin,
+			MaxDelay:         pipeline.Settings.Stealth.DelayMax,
+			RandomUserAgent:  pipeline.Settings.Stealth.RandomizeUserAgents,
+			UseProxies:       pipeline.Settings.Stealth.UseProxies,
+			ProxyRotation:    pipeline.Settings.Stealth.ProxyRotation,
+			FragmentPackets:  pipeline.Settings.Stealth.FragmentPackets,
+			AdaptiveProfile:  pipeline.Settings.Stealth.AdaptiveProfile,
+			UseDecoys:        pipeline.Settings.Stealth.UseDecoys,
+			JitterEnabled:    true,
+			EncodePayloads:   true,
+		}
+		pipeline.stealthMgr = stealth.NewStealthManager(stealthConfig)
+		
+		if !quiet {
+			color.Green("🥷 Stealth mode enabled (Level: %d)", pipeline.Settings.Stealth.Level)
+		}
 	}
 
 	// Set target if provided
@@ -672,7 +705,13 @@ func (p *Pipeline) evaluateCondition(condition string) bool {
 }
 
 func (p *Pipeline) applyStealthDelay() {
-	if p.Settings.Stealth.DelayMin > 0 && p.Settings.Stealth.DelayMax > 0 {
+	// Use stealth manager if available
+	if p.stealthMgr != nil {
+		// Create dummy request to apply stealth delays
+		req, _ := http.NewRequest("GET", "http://example.com", nil)
+		p.stealthMgr.ApplyStealthToRequest(req)
+	} else if p.Settings.Stealth.DelayMin > 0 && p.Settings.Stealth.DelayMax > 0 {
+		// Fallback to simple delay
 		delay := int64(p.Settings.Stealth.DelayMin) + 
 			(time.Now().UnixNano() % int64(p.Settings.Stealth.DelayMax - p.Settings.Stealth.DelayMin))
 		time.Sleep(time.Duration(delay) * time.Millisecond)
