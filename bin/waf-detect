@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# WAF Detection Tool
+TARGET="$2"
+
+if [[ "$TARGET" != http* ]]; then
+    TARGET="https://$TARGET"
+fi
+
+echo "Checking WAF on $TARGET..."
+
+# Test common WAF signatures
+RESPONSE=$(curl -s -I -X GET "$TARGET" -H "User-Agent: ' OR 1=1--" 2>/dev/null)
+
+# Check for common WAF headers
+if echo "$RESPONSE" | grep -qi "cloudflare\|akamai\|incapsula\|x-sucuri\|x-waf\|modsecurity\|barracuda\|f5-bigip"; then
+    echo '{"waf_detected":true,"type":"detected"}'
+else
+    echo '{"waf_detected":false}'
+fi
