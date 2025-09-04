@@ -12,7 +12,7 @@
 
 PADOCCA é uma framework de segurança ofensiva de última geração que combina reconhecimento avançado, detecção de vulnerabilidades e modo stealth adaptativo para testes de penetração profissionais.
 
-## 🚀 O que há de novo na v2.0
+## 🚀 O que há de novo:
 
 ### ✨ Novos Módulos Principais
 - **🔍 Subdomain Discovery Avançado**: 20+ fontes de dados com validação inteligente
